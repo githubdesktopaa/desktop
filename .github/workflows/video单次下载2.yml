@@ -48,7 +48,7 @@ jobs:
       - name: 开启新的下载任务
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: shipin第2次下载rclone上传.yml
+          workflow: shipin第3次下载rclone上传.yml
           ref: main
 
       - name: 删除旧的上传记录
