@@ -1,4 +1,4 @@
-name: shipin第3次下载rclone上传.yml
+name: shipin第2次下载rclone上传.yml
 on:
   workflow_dispatch:
     inputs:
@@ -33,22 +33,22 @@ jobs:
            docker-images: false
            swap-storage: true
 
-      - name: 'Download file from PikPak 1'
+      - name: 'Download file from PikPak 2'
         run: |
           chmod a+x pikpakcli
-          ./pikpakcli download -c 10 -p ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_3 }}
+          ./pikpakcli download -c 10 -p ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_2 }}
 
-      - name: upload onedrive 3
+      - name: upload onedrive 2
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_3 }}/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_ANIME_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}
+          args: copy ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_2 }}/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_ANIME_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}
 
       - name: 开启新的下载任务
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: shipin第3次下载rclone上传.yml
+          workflow: shipin第2次下载rclone上传.yml
           ref: main
 
       - name: 删除旧的上传记录
