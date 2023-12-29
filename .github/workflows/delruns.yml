@@ -1,4 +1,4 @@
-name: 删除完成任务
+name: delruns.yml
 on:
   repository_dispatch:
   workflow_dispatch:
