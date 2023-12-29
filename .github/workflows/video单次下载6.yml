@@ -51,8 +51,8 @@ jobs:
           workflow: shipin第6次下载rclone上传.yml
           ref: main
 
-      - name: 删除旧的上传记录
-        uses: Mattraks/delete-workflow-runs@v2
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v1.2.3
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
