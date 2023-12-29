@@ -1,0 +1,46 @@
+name: shipin第2次下载rclone上传.yml
+on:
+  workflow_dispatch:
+    inputs:
+      path:
+        description: '下载路径'
+        required: true
+        default: 'shipin'
+
+jobs:
+  pikpak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Create Config'
+        run: |
+          echo 'username: ${{ secrets.PIKPAKUSERNAME }}
+          password: ${{ secrets.PIKPAKPASSWORD }}' >> config.yml
+      - name: update
+        run: |
+           sudo apt-get update >/dev/null 2>&1
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+           tool-cache: true
+           android: true
+           dotnet: true
+           haskell: true
+           large-packages: true
+           docker-images: false
+           swap-storage: true
+
+      - name: 'Download file from PikPak 2'
+        run: |
+          chmod a+x pikpakcli
+          ./pikpakcli download -c 10 -p ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_2 }}
+
+      - name: upload onedrive 2
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: copy ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_2 }}/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_ANIME_SAVE_DIRECTORY }}   ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PAR
