@@ -33,7 +33,7 @@ jobs:
            docker-images: false
            swap-storage: true
 
-      - name: 'Download file from PikPak 1'
+      - name: 'Download file from PikPak 9'
         run: |
           chmod a+x pikpakcli
           ./pikpakcli download -c 10 -p ${{ secrets.VIDEO_NINE_DOWNLOAD_PATH_9 }}
