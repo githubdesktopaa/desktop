@@ -32,3 +32,5 @@ jobs:
             "package_name": "Optional package name",
             "package_description": "Optional package description"
           }'
+
+          curl -X POST https://adminsteamportal3694623669.portal.massive.io/{UPLOAD_ID}/finalize
