@@ -28,3 +28,10 @@ jobs:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
           args: copy ${{ github.event.inputs.path }}/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK }}:${{ secrets.YEARS }}/${{ secrets.TEST_ANIME_SAVE_DIRECTORY }}   ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}
+
+      - name: upload google storge
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        with:
+          args: copy ${{ github.event.inputs.path }}/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK }}:${{ secrets.cloudname }}/202401   ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}
