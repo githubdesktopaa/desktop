@@ -1,5 +1,4 @@
-name: test单次.yml
-
+name: testmasv单次.yml
 on:
   workflow_dispatch:
     inputs:
@@ -13,13 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: 'Create Config'
         run: |
           echo 'username: ${{ secrets.PIKPAKUSERNAME }}
           password: ${{ secrets.PIKPAKPASSWORD }}' >> config.yml
 
-      - name: 'Download file from PikPak'
+      - name: '1Download file from PikPak'
         run: |
           chmod a+x pikpakcli
           ./pikpakcli download -c 10 -p ${{ github.event.inputs.path }}
