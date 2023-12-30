@@ -1,0 +1,36 @@
+name: test单次.yml
+
+on:
+  workflow_dispatch:
+    inputs:
+      path:
+        description: '下载路径'
+        required: true
+        default: 'test'
+
+jobs:
+  pikpak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Create Config'
+        run: |
+          echo 'username: ${{ secrets.PIKPAKUSERNAME }}
+          password: ${{ secrets.PIKPAKPASSWORD }}' >> config.yml
+
+      - name: 'Download file from PikPak'
+        run: |
+          chmod a+x pikpakcli
+          ./pikpakcli download -c 10 -p ${{ github.event.inputs.path }}
+
+      - name: 'Upload to OneDrive'
+        run: |
+          curl -X POST -H "Content-Type: application/json" https://adminsteamportal3694623669.portal.massive.io -d '{
+            "subdomain":"acme",
+            "sender_email":"jipir73948@outlook.com",
+            "paths":["/${{ github.event.inputs.path }}/"],
+            "access_code": "chy*naj_zyw.PRF5ejc",
+            "package_name": "Optional package name",
+            "package_description": "Optional package description"
+          }'
