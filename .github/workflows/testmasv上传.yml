@@ -17,7 +17,7 @@ jobs:
           echo 'username: ${{ secrets.PIKPAKUSERNAME }}
           password: ${{ secrets.PIKPAKPASSWORD }}' >> config.yml
 
-      - name: '1Download file from PikPak1'
+      - name: '1Download file from PikPak2'
         run: |
           chmod a+x pikpakcli
           ./pikpakcli download -c 10 -p ${{ github.event.inputs.path }}
