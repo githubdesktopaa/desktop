@@ -1,4 +1,4 @@
-name: shipin第9次下载rclone上传.yml
+name: shipinpp第9次下载rclone上传.yml
 on:
   workflow_dispatch:
     inputs:
